@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/signin_signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo flex items-center">
+                💡 <span>Flashcard Hub</span>
+            </div>
+
+            <div class="nav-links flex gap-5">
+                <a href="#" class="text-black hover:text-blue-600">Create Decks</a>
+                <a href="#" class="text-black hover:text-blue-600">Study Flashcards</a>
+                <a href="#" class="text-black hover:text-blue-600">Share</a>
+                <a href="#" class="text-black hover:text-blue-600">Explore Topics</a>
+            </div>
+
+            <div class="auth-buttons flex gap-2">
+                <button class="login bg-black text-white px-3 py-1 text-sm">Log
+                    in</button>
+                <button class="signup bg-black text-white px-3 py-1 text-sm">Sign
+                    up</button>
+            </div>
+
+            <div class="menu-toggle hidden md:block cursor-pointer text-xl">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero flex flex-col items-center justify-center min-h-[75vh] text-center">
+            <div class="icon text-6xl mb-5">📋</div>
+            <h1 class="text-4xl font-bold mb-5">Enhance your learning<br>with interactive</h1>
+            <button class="bg-black text-white px-6 py-2 text-sm">Start Studying</button>
+        </div>
+
+        <div class="public-flashcards-section max-w-6xl mx-auto px-4 text-center">
+            <div class="section-content">
+                <h2 class="text-3xl font-semibold mb-4 text-gray-800">Public Flash Cards</h2>
+                <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">No account? No problem. Public flash cards are
+                    free for everyone to use!</p>
+
+                <div class="flashcard-options flex flex-col gap-4 max-w-2xl mx-auto">
+                    <div
+                        class="flashcard-option flex justify-between items-center px-6 py-4 border-2 border-gray-300 rounded-full cursor-pointer hover:border-blue-600 hover:translate-x-2 transition-all">
+                        <span class="text-lg text-gray-800">Classical Music Composers</span>
+                        <div
+                            class="arrow-icon w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-white">
+                            <i class="fas fa-chevron-right text-sm"></i>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flashcard-option flex justify-between items-center px-6 py-4 border-2 border-gray-300 rounded-full cursor-pointer hover:border-blue-600 hover:translate-x-2 transition-all">
+                        <span class="text-lg text-gray-800">Star Trek Facts & Trivia</span>
+                        <div
+                            class="arrow-icon w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-white">
+                            <i class="fas fa-chevron-right text-sm"></i>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flashcard-option flex justify-between items-center px-6 py-4 border-2 border-gray-300 rounded-full cursor-pointer hover:border-blue-600 hover:translate-x-2 transition-all">
+                        <span class="text-lg text-gray-800">Miscellaneous Trivia</span>
+                        <div
+                            class="arrow-icon w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-white">
+                            <i class="fas fa-chevron-right text-sm"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-section mx-auto my-12 px-4 shadow-sm rounded-lg">
+            <div class="gallery-header text-left mb-6">
+                <h2 class="text-2xl font-semibold mb-2 text-gray-800">Gallery</h2>
+                <p class="text-lg text-gray-600">Check out our blog for tips and tricks.</p>
+            </div>
+
+            <div class="gallery-container flex gap-6 flex-wrap justify-start items-center p-12">
+                <div class="gallery-item rounded-lg shadow-sm p-4">
+                    <img src="/Assets/create-decks.png" alt="img" class="w-60 mb-3">
+                    <div class="gallery-caption text-center text-xl font-semibold text-gray-800">Create Decks</div>
+                </div>
+
+                <div class="gallery-item rounded-lg shadow-sm p-4">
+                    <img src="/Assets/study-mode.png" alt="img" class="w-60 mb-3">
+                    <div class="gallery-caption text-center text-xl font-semibold text-gray-800">Study Mode</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-section mx-auto px-4 text-center shadow-sm rounded-lg">
+            <h2 class="section-title text-2xl font-semibold mb-8 text-gray-800">Join a community of learners and
+                creators</h2>
+
+            <div class="testimonials-container flex justify-center gap-6 flex-wrap">
+                <div
+                    class="testimonial-card bg-white rounded-lg p-6 shadow-sm w-72 text-left hover:translate-y-[-5px] transition-transform">
+                    <div class="quote-icon text-2xl text-gray-800 mb-4">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <p class="testimonial-text text-lg text-gray-600 mb-6">Feedback helps us grow.</p>
+                    <div class="testimonial-author flex items-center">
+                        <img src="https://z-cdn-media.chatglm.cn/files/45897884-2eec-4b37-92ab-091106d01050.png?auth_key=1865778668-6c43439d2f56447cbb9646a4f1bb6138-0-57b42dd12c1b3c1fb97aef3ac6e1f5a4"
+                            alt="Jordan T." class="author-avatar w-10 h-10 rounded-full mr-3">
+                        <div class="author-info">
+                            <h4 class="text-base font-semibold text-gray-800">Jordan T.</h4>
+                            <p class="text-sm text-gray-600">Educator</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="testimonial-card bg-white rounded-lg p-6 shadow-sm w-72 text-left hover:translate-y-[-5px] transition-transform">
+                    <div class="quote-icon text-2xl text-gray-800 mb-4">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text text-lg text-gray-600 mb-6">This platform transformed my teaching
+                        methods!</p>
+                    <div class="testimonial-author flex items-center">
+                        <img src="https://z-cdn-media.chatglm.cn/files/45897884-2eec-4b37-92ab-091106d01050.png?auth_key=1865778668-6c43439d2f56447cbb9646a4f1bb6138-0-57b42dd12c1b3c1fb97aef3ac6e1f5a4"
+                            alt="Emma R." class="author-avatar w-10 h-10 rounded-full mr-3">
+                        <div class="author-info">
+                            <h4 class="text-base font-semibold text-gray-800">Emma R.</h4>
+                            <p class="text-sm text-gray-600">Student</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="testimonial-card bg-white rounded-lg p-6 shadow-sm w-72 text-left hover:translate-y-[-5px] transition-transform">
+                    <div class="quote-icon text-2xl text-gray-800 mb-4">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text text-lg text-gray-600 mb-6">Flashcards made studying fun and effective.
+                    </p>
+                    <div class="testimonial-author flex items-center">
+                        <img src="https://z-cdn-media.chatglm.cn/files/45897884-2eec-4b37-92ab-091106d01050.png?auth_key=1865778668-6c43439d2f56447cbb9646a4f1bb6138-0-57b42dd12c1b3c1fb97aef3ac6e1f5a4"
+                            alt="Liam S." class="author-avatar w-10 h-10 rounded-full mr-3">
+                        <div class="author-info">
+                            <h4 class="text-base font-semibold text-gray-800">Liam S.</h4>
+                            <p class="text-sm text-gray-600">Content Creator</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="testimonial-card bg-white rounded-lg p-6 shadow-sm w-72 text-left hover:translate-y-[-5px] transition-transform">
+                    <div class="quote-icon text-2xl text-gray-800 mb-4">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text text-lg text-gray-600 mb-6">I love sharing my decks with others!</p>
+                    <div class="testimonial-author flex items-center">
+                        <img src="https://z-cdn-media.chatglm.cn/files/45897884-2eec-4b37-92ab-091106d01050.png?auth_key=1865778668-6c43439d2f56447cbb9646a4f1bb6138-0-57b42dd12c1b3c1fb97aef3ac6e1f5a4"
+                            alt="Olivia P." class="author-avatar w-10 h-10 rounded-full mr-3">
+                        <div class="author-info">
+                            <h4 class="text-base font-semibold text-gray-800">Olivia P.</h4>
+                            <p class="text-sm text-gray-600">Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer bg-white py-12 mt-8">
+        <div class="footer-container max-w-6xl mx-auto px-4 flex justify-between">
+            <div class="footer-logo flex items-center mb-6">
+                <div class="logo-icon text-2xl mr-2">😊</div>
+                <div class="logo-text text-xl font-bold">Flashcard Exchange</div>
+            </div>
+
+            <div class="footer-links gap-12">
+                <div class="footer-column">
+                    <h3 class="text-base font-semibold mb-4 text-gray-800">Learn more about us</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-black">About Us</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-black">Careers</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-black">Press inquiries</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-black">Subscriptions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="text-base font-semibold mb-4 text-gray-800">Help center</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-black">Contact support</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-black">Frequently Asked Questions</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-black">Need help?</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="text-base font-semibold mb-4 text-gray-800">Join our community</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-black">Facebook</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-black">Instagram</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-black">Twitter</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-black">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="./script.js"></script>
+</body>
+
+</html>
