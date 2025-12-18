@@ -24,9 +24,9 @@
             </div>
 
             <div class="auth-buttons flex gap-2">
-                <button class="login bg-black text-white px-3 py-1 text-sm">Log
+                <button class="login bg-black text-white px-3 py-1 text-sm" onclick="loadComponent('signin')">Login
                     in</button>
-                <button class="signup bg-black text-white px-3 py-1 text-sm">Sign
+                <button class="signup bg-black text-white px-3 py-1 text-sm" onclick="loadComponent('signup')">Sign
                     up</button>
             </div>
 
@@ -34,6 +34,16 @@
                 <i class="fas fa-bars"></i>
             </div>
         </div>
+        <section id="popup-section">
+            <div id="overlay" onclick="closePopup()"></div>
+
+            <div id="popup">
+                <div id="loader" class="loader hidden"></div>
+                <div id="popupContent"></div>
+            </div>
+        </section>
+
+        <div id="msg-popup" class="msg-popup"></div>
     </header>
 
     <main>
@@ -213,6 +223,7 @@
         </div>
     </footer>
 
+    <script type="module" src="/js/auth.js"></script>
     <script type="module" src="./script.js"></script>
 </body>
 
