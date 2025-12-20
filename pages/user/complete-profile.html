@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Complete Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/css/components/userNavbar.css">
+  <link rel="stylesheet" href="/css/complete-profile.css">
+</head>
+
+<body>
+
+  <div id="navbar-container"></div>
+
+  <div class="profile-container">
+    <div class="profile-card">
+      <h2>Complete Your Profile</h2>
+      <p>Tell us a bit about yourself</p>
+
+      <form id="completeProfileForm">
+        <input id="name" placeholder="Full Name" required />
+
+        <label class="upload-box">
+          <input type="file" id="photo" accept="image/*" hidden />
+          <span>Upload Profile Photo</span>
+        </label>
+
+        <img id="photoPreview" class="preview hidden" />
+
+        <button type="submit">Continue</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="/js/profile/completeProfile.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create Deck | Flashcard Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/components/userNavbar.css">
+    <link rel="stylesheet" href="/css/user/createDeck.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- 🔥 NAVBAR COMPONENT -->
+    <div id="navbar-container"></div>
+
+    <div class="deck-container">
+        <h1>Create New Deck</h1>
+        <p class="subtitle">Build your flashcard deck and study smarter.</p>
+
+        <!-- COVER -->
+        <label class="label">Deck Cover</label>
+        <div class="cover-upload">
+            <input type="file" id="coverInput" accept="image/*" hidden>
+            <div id="coverPreview" class="cover-preview">
+                <i class="fas fa-image"></i>
+                <span>Upload Cover</span>
+            </div>
+        </div>
+
+        <!-- TITLE -->
+        <label class="label">Deck Title</label>
+        <input id="deckTitle" class="input" placeholder="e.g. Human Anatomy">
+
+        <!-- SUBJECT -->
+        <label class="label">Deck Subject</label>
+        <select id="subjectSelect" class="input"></select>
+
+        <div id="private-div">
+            <input type="checkbox" name="private" id="private">
+            <label for="">Make it Private</label>
+        </div>
+        <!-- CARDS -->
+        <div class="cards-section">
+            <h2>Add Cards</h2>
+
+            <div class="card-inputs">
+                <input id="frontText" class="input" placeholder="Front text">
+                <input id="backText" class="input" placeholder="Back text">
+            </div>
+
+            <button id="addCard" class="add-card-btn">+ Add Card</button>
+            <div id="liveCards" class="live-cards"></div>
+        </div>
+
+        <button id="createDeckBtn" class="create-btn">Save Deck</button>
+    </div>
+
+    <script type="module">
+        import { loadUserNavbar } from "/js/components/userNavbar.js";
+        loadUserNavbar();
+    </script>
+
+    <script type="module" src="/js/user/createDeck.js"></script>
+</body>
+
+</html>

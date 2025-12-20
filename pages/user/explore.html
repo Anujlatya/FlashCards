@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Browse Decks | Flashcard Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/components/userNavbar.css">
+    <link rel="stylesheet" href="/css/user/explore.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div id="navbar-container"></div>
+
+    <div class="search-page">
+
+        <!-- HEADER -->
+        <header class="search-header">
+            <h1>Recommended Decks</h1>
+            <p>Learn smarter with top flashcards</p>
+
+            <div class="search-row">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input id="searchInput" placeholder="Search Biology, Physics, Java..." />
+                </div>
+
+                <button id="openFilter" class="filter-btn">
+                    <i class="fas fa-sliders-h"></i> Filter
+                </button>
+            </div>
+        </header>
+
+        <!-- RESULTS -->
+        <div class="selected-info" id="selectedCount">0 decks selected</div>
+
+        <section id="results" class="results-grid"></section>
+
+        <button id="startStudy" class="start-btn hidden">
+            🔀 Shuffle & Start Study
+        </button>
+
+    </div>
+
+    <!-- FILTER DRAWER -->
+    <div id="filterDrawer" class="filter-drawer">
+        <h3>Filter Decks</h3>
+
+        <button data-sort="rating">⭐ Most Popular</button>
+        <button data-sort="recent">🆕 Recently Uploaded</button>
+
+        <h4>Subjects</h4>
+        <div class="subject-list">
+            <button data-subject="All">All</button>
+            <button data-subject="Biology">Biology</button>
+            <button data-subject="Physics">Physics</button>
+            <button data-subject="Mathematics">Maths</button>
+            <button data-subject="Computer Science">CS</button>
+            <button data-subject="Chemistry">Chemistry</button>
+        </div>
+
+        <button id="closeFilter" class="close-filter">Close</button>
+    </div>
+
+    <script type="module">
+        import { loadUserNavbar } from "/js/components/userNavbar.js";
+        loadUserNavbar();
+    </script>
+    <script src="/js/user/explore.js"></script>
+</body>
+
+</html>

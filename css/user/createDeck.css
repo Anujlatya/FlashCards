@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, Arial
+}
+
+body {
+    background: #eef2ff;
+}
+
+
+/* CONTAINER */
+.deck-container {
+    margin: 3vh auto;
+    max-width: 80vw;
+    background: #fff;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .1);
+}
+
+/* HEADER */
+h1 {
+    font-size: 2.8rem;
+}
+
+.subtitle {
+    color: #6b7280;
+    margin-bottom: 30px;
+}
+
+/* LABEL + INPUT */
+.label {
+    font-weight: 600;
+    margin: 18px 0 6px;
+    display: block;
+}
+
+.input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 2px solid #e5e7eb;
+    font-size: 16px;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #6366f1;
+}
+
+/* COVER */
+.cover-upload {
+    margin-bottom: 20px;
+}
+
+.cover-preview {
+    height: 160px;
+    border-radius: 20px;
+    border: 2px dashed #c7d2fe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    color: #6366f1;
+    background: #eef2ff;
+}
+
+.cover-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+/* SUBJECT */
+.subject-box {
+    position: relative;
+}
+
+.subject-list {
+    display: none;
+    border: 2px solid #e5e7eb;
+    border-radius: 14px;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+.subject {
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+.subject:hover {
+    background: #eef2ff;
+}
+
+#private-div {
+    margin-top: 1vh;
+    padding: 0vw 1vw;
+}
+
+/* CARDS */
+.cards-section {
+    margin-top: 1vh;
+}
+
+.card-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.add-card-btn {
+    margin-top: 14px;
+    background: #6366f1;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 14px;
+    cursor: pointer;
+}
+
+/* LIVE CARD */
+.live-cards {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+}
+
+.card-preview {
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 140px;
+    transition: transform .6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.card-preview:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 18px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 600;
+}
+
+.front {
+    background: #4f46e5;
+    color: white;
+}
+
+.back {
+    background: #111827;
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.delete-card {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    color: white;
+    font-size: 14px;
+}
+
+/* CREATE BTN */
+.create-btn {
+    margin-top: 40px;
+    width: 100%;
+    padding: 18px;
+    font-size: 1.3rem;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+    border: none;
+    border-radius: 50px;
+}
+
+/* RESPONSIVE */
+@media(max-width:600px) {
+    .card-inputs {
+        grid-template-columns: 1fr;
+    }
+}

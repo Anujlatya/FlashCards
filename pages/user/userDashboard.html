@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flashcard Hub | Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/components/userNavbar.css">
+    <link rel="stylesheet" href="/css/user/userDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <div id="navbar-container"></div>
+
+    <div class="container">
+        <!-- DASHBOARD -->
+        <div class="bg-container">
+            <div>
+                <h1 class="dashboard-title">Dashboard</h1>
+                <p class="dashboard-sub">Create, manage and study flashcards</p>
+            </div>
+
+            <br>
+            <div class="main-content">
+
+                <!-- CREATE SECTION -->
+                <div class="section">
+                    <h2 class="section-title">Create New Deck</h2>
+
+                    <div class="create-row">
+                        <a href="/pages/user/createDeck.html" class="create-btn">
+                            Create Deck
+                        </a>
+
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div id="totalDecks" class="stat-value">0</div>
+                            <div>Total Decks</div>
+                        </div>
+                        <div class="stat-card">
+                            <div id="totalCards" class="stat-value">0</div>
+                            <div>Total Cards</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MY DECKS -->
+                <div class="section">
+                    <h2 class="section-title">My Decks</h2>
+
+                    <div id="deckList" class="decks-list"></div>
+
+                    <!-- SHUFFLE AT BOTTOM -->
+                    <button id="shuffleAll" class="shuffle-btn">
+                        <i class="fas fa-random"></i> Shuffle & Study
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CREATE DECK POPUP -->
+        <div id="overlay" class="overlay hidden">
+            <div class="popup">
+                <div class="popup-header">
+                    <h3>Create Deck</h3>
+                    <button id="closePopup">✕</button>
+                </div>
+
+                <input id="deckTitle" class="" placeholder="Deck name" />
+                <input id="subjectInput" class="" placeholder="Subject" />
+
+                <label>
+                    <input type="checkbox" id="isPublic" />
+                    Private Deck
+                </label>
+
+                <button id="addCardBtn" class="btn small">Add Card</button>
+
+                <div id="cardInputs" class="hidden">
+                    <input id="frontText" class="form-input" placeholder="Front text" />
+                    <input id="backText" class="form-input" placeholder="Back text" />
+                    <button id="saveCardBtn" class="btn small">Save Card</button>
+                </div>
+
+                <div id="cardsPreview"></div>
+
+                <button id="saveDeckBtn" class="btn primary full">Create Deck</button>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        import { loadUserNavbar } from "/js/components/userNavbar.js";
+        loadUserNavbar();
+    </script>
+    <script type="module" src="/js/dashboard/userDashboard.js"></script>
+</body>
+
+</html>
