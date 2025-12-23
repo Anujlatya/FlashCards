@@ -21,7 +21,6 @@ const liveCards = document.getElementById("liveCards");
 const deckTitle = document.getElementById("deckTitle");
 const frontText = document.getElementById("frontText");
 const backText = document.getElementById("backText");
-
 const privateCheckbox = document.getElementById("private");
 
 /* ================= STATE ================= */
@@ -41,13 +40,17 @@ onAuthStateChanged(auth, async (user) => {
 
 /* ================= SUBJECTS ================= */
 async function loadSubjects() {
-  subjectSelect.innerHTML = `<option value="">Select Subject</option>`;
+  subjectSelect.innerHTML =
+    `<option value="">Select subject</option>`;
+
   const snap = await getDocs(collection(db, "subjects"));
 
   snap.forEach(d => {
-    subjectSelect.innerHTML += `<option value="${d.data().name}">
-      ${d.data().name}
-    </option>`;
+    subjectSelect.innerHTML += `
+      <option value="${d.data().name}">
+        ${d.data().name}
+      </option>
+    `;
   });
 }
 
@@ -61,19 +64,22 @@ coverInput.onchange = () => {
   const reader = new FileReader();
   reader.onload = () => {
     coverImage = reader.result;
-    coverPreview.innerHTML = `<img src="${coverImage}" />`;
+    coverPreview.innerHTML = `
+      <img src="${coverImage}"
+        class="w-full h-full object-cover rounded-2xl" />
+    `;
   };
   reader.readAsDataURL(file);
 };
 
 /* ================= ADD CARD ================= */
 addCardBtn.onclick = () => {
-  if (!frontText.value || !backText.value) return;
+  const front = frontText.value.trim();
+  const back = backText.value.trim();
 
-  cards.push({
-    front: frontText.value,
-    back: backText.value
-  });
+  if (!front || !back) return;
+
+  cards.push({ front, back });
 
   frontText.value = "";
   backText.value = "";
@@ -82,11 +88,20 @@ addCardBtn.onclick = () => {
 
 function renderCards() {
   liveCards.innerHTML = "";
+
   cards.forEach((c, i) => {
     liveCards.innerHTML += `
-      <div class="card-preview">
-        <b>${c.front}</b> → ${c.back}
-        <span onclick="removeCard(${i})">❌</span>
+      <div class="bg-slate-100 rounded-xl p-4 relative">
+        <button
+          class="absolute top-2 right-2 text-red-500 text-sm"
+          onclick="removeCard(${i})">✕</button>
+
+        <p class="font-semibold text-slate-700">
+          ${c.front}
+        </p>
+        <p class="text-slate-500 text-sm mt-1">
+          ${c.back}
+        </p>
       </div>
     `;
   });
@@ -99,8 +114,11 @@ window.removeCard = (i) => {
 
 /* ================= CREATE DECK ================= */
 createDeckBtn.onclick = async () => {
-  if (!deckTitle.value || !subjectSelect.value || !cards.length) {
-    alert("Fill all fields");
+  const title = deckTitle.value.trim();
+  const subject = subjectSelect.value;
+
+  if (!title || !subject || !cards.length) {
+    alert("Please fill all fields");
     return;
   }
 
@@ -109,12 +127,15 @@ createDeckBtn.onclick = async () => {
     if (!ok) return;
   }
 
+  createDeckBtn.disabled = true;
+  createDeckBtn.innerText = "Creating...";
+
   try {
-    // 🔥 CREATE DECK
+    /* 🔥 CREATE DECK */
     const deckRef = await addDoc(collection(db, "decks"), {
-      title: deckTitle.value,
-      subjects: [subjectSelect.value],
-      cover: coverImage,
+      title,
+      subjects: [subject],
+      cover: coverImage || "", // default empty
       userId: currentUser.uid,
       isPublic: !privateCheckbox.checked,
 
@@ -123,29 +144,38 @@ createDeckBtn.onclick = async () => {
         count: 0,
         byUsers: {}
       },
-      share:{},
-      save:[],
+
+      cardCount: cards.length, // ✅ IMPORTANT
+      share: {},
+      save: [],
       createdAt: serverTimestamp()
     });
 
-    // 🔥 CREATE CARDS
+    /* 🔥 CREATE CARDS */
     for (const card of cards) {
-      await addDoc(collection(db, `decks/${deckRef.id}/cards`), {
-        front: card.front,
-        back: card.back,
-        likes:[],
-        comment:{},
-        save:[],
-        share:{},
-        createdAt: serverTimestamp()
-      });
+      await addDoc(
+        collection(db, `decks/${deckRef.id}/cards`),
+        {
+          front: card.front,
+          back: card.back,
+          createdAt: serverTimestamp(),
+          likes: [],
+          share: {},
+          comment: {},
+          save: []
+        }
+      );
     }
 
     alert("Deck created successfully 🎉");
-    window.location.href = "/pages/user/userDashboard.html";
+    window.location.href =
+      "/pages/user/userDashboard.html";
 
   } catch (err) {
     console.error(err);
     alert(err.message);
+  } finally {
+    createDeckBtn.disabled = false;
+    createDeckBtn.innerText = "Save Deck";
   }
 };

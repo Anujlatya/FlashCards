@@ -1,5 +1,4 @@
 /* Utility Classes */
-
 .bg-red{background-color: red;}
 .bg-blue{background-color: blue;}
 .bg-green{background-color: green;}
@@ -163,14 +162,14 @@ header{
 }
 
 /* Hero Section */
-.hero {
+/* .hero {
     height: 75vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-}
+} */
 
 .icon {
     font-size: 80px;

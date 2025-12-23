@@ -2,74 +2,103 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Browse Decks | Flashcard Hub</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Browse Decks | FlashExchange</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/css/components/userNavbar.css">
-    <link rel="stylesheet" href="/css/user/explore.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Navbar -->
+  <link rel="stylesheet" href="/css/components/userNavbar.css">
 </head>
 
-<body>
+<body class="bg-slate-100">
 
-    <div id="navbar-container"></div>
+  <div id="navbar-container"></div>
 
-    <div class="search-page">
+  <main class="max-w-6xl mx-auto px-6 py-10">
 
-        <!-- HEADER -->
-        <header class="search-header">
-            <h1>Recommended Decks</h1>
-            <p>Learn smarter with top flashcards</p>
+    <!-- HEADER -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-black">Recommended Decks</h1>
+      <p class="text-slate-500 mt-2">Learn smarter with public flashcards</p>
 
-            <div class="search-row">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input id="searchInput" placeholder="Search Biology, Physics, Java..." />
-                </div>
-
-                <button id="openFilter" class="filter-btn">
-                    <i class="fas fa-sliders-h"></i> Filter
-                </button>
-            </div>
-        </header>
-
-        <!-- RESULTS -->
-        <div class="selected-info" id="selectedCount">0 decks selected</div>
-
-        <section id="results" class="results-grid"></section>
-
-        <button id="startStudy" class="start-btn hidden">
-            🔀 Shuffle & Start Study
-        </button>
-
-    </div>
-
-    <!-- FILTER DRAWER -->
-    <div id="filterDrawer" class="filter-drawer">
-        <h3>Filter Decks</h3>
-
-        <button data-sort="rating">⭐ Most Popular</button>
-        <button data-sort="recent">🆕 Recently Uploaded</button>
-
-        <h4>Subjects</h4>
-        <div class="subject-list">
-            <button data-subject="All">All</button>
-            <button data-subject="Biology">Biology</button>
-            <button data-subject="Physics">Physics</button>
-            <button data-subject="Mathematics">Maths</button>
-            <button data-subject="Computer Science">CS</button>
-            <button data-subject="Chemistry">Chemistry</button>
+      <div class="flex gap-3 justify-center mt-6">
+        <div class="flex items-center bg-white px-5 py-3 rounded-full shadow w-full max-w-md">
+          <i class="fas fa-search text-slate-400"></i>
+          <input id="searchInput"
+            class="ml-3 w-full outline-none"
+            placeholder="Search Biology, Physics, Java..." />
         </div>
 
-        <button id="closeFilter" class="close-filter">Close</button>
+        <button id="openFilter"
+          class="bg-indigo-600 text-white px-5 py-3 rounded-full">
+          <i class="fas fa-sliders-h"></i>
+        </button>
+      </div>
     </div>
 
-    <script type="module">
-        import { loadUserNavbar } from "/js/components/userNavbar.js";
-        loadUserNavbar();
-    </script>
-    <script src="/js/user/explore.js"></script>
+    <!-- SELECTED INFO -->
+    <div id="selectedCount"
+      class="text-center text-slate-600 font-medium mb-4">
+      0 decks selected
+    </div>
+
+    <!-- RESULTS -->
+    <section id="results"
+      class="grid sm:grid-cols-5 gap-6 max-h-[520px] overflow-y-auto pr-2">
+    </section>
+
+    <!-- START -->
+    <button id="startStudy"
+      class="hidden w-full mt-6 py-4 rounded-full text-white text-lg font-semibold
+             bg-gradient-to-r from-green-500 to-emerald-600">
+      🔀 Shuffle & Start Study
+    </button>
+
+  </main>
+
+  <!-- FILTER DRAWER -->
+  <div id="filterDrawer"
+    class="fixed top-0 right-[-300px] w-72 h-full bg-white shadow-xl p-6 transition-all">
+
+    <h3 class="font-bold mb-4">Filter Decks</h3>
+
+    <button data-sort="rating" class="w-full py-2 mb-2 rounded bg-slate-100">
+      ⭐ Most Popular
+    </button>
+
+    <button data-sort="recent" class="w-full py-2 mb-4 rounded bg-slate-100">
+      🆕 Recently Uploaded
+    </button>
+
+    <h4 class="font-semibold mb-2">Subjects</h4>
+
+    <!-- <div class="flex flex-wrap gap-2 mb-6">
+      <button data-subject="All" class="px-3 py-1 rounded-full bg-indigo-100">All</button>
+      <button data-subject="Biology" class="px-3 py-1 rounded-full bg-indigo-100">Biology</button>
+      <button data-subject="Physics" class="px-3 py-1 rounded-full bg-indigo-100">Physics</button>
+      <button data-subject="Mathematics" class="px-3 py-1 rounded-full bg-indigo-100">Maths</button>
+      <button data-subject="Computer Science" class="px-3 py-1 rounded-full bg-indigo-100">CS</button>
+      <button data-subject="Chemistry" class="px-3 py-1 rounded-full bg-indigo-100">Chemistry</button>
+    </div> -->
+
+    <button id="closeFilter"
+      class="w-full py-2 rounded bg-slate-900 text-white">
+      Close
+    </button>
+  </div>
+
+  <script type="module">
+    import { loadUserNavbar } from "/js/components/userNavbar.js";
+    loadUserNavbar();
+  </script>
+
+  <script type="module" src="/js/user/explore.js"></script>
 </body>
 
 </html>

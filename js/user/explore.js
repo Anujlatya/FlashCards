@@ -1,92 +1,237 @@
-const decks = [
- {t:"Human Anatomy",s:"Biology",c:30,r:4.8,d:2024},
- {t:"Cell Biology",s:"Biology",c:22,r:4.5,d:2023},
- {t:"Genetics",s:"Biology",c:18,r:4.6,d:2024},
- {t:"Laws of Motion",s:"Physics",c:25,r:4.7,d:2024},
- {t:"Thermodynamics",s:"Physics",c:20,r:4.3,d:2023},
- {t:"Optics",s:"Physics",c:19,r:4.4,d:2022},
- {t:"Algebra",s:"Mathematics",c:28,r:4.6,d:2023},
- {t:"Trigonometry",s:"Mathematics",c:24,r:4.4,d:2024},
- {t:"Calculus",s:"Mathematics",c:26,r:4.7,d:2022},
- {t:"DSA Arrays",s:"Computer Science",c:35,r:4.9,d:2024},
- {t:"Linked List",s:"Computer Science",c:30,r:4.8,d:2023},
- {t:"OOPS",s:"Computer Science",c:32,r:4.7,d:2024},
- {t:"HTML Basics",s:"Computer Science",c:20,r:4.5,d:2022},
- {t:"Organic Chem",s:"Chemistry",c:26,r:4.2,d:2022},
- {t:"Periodic Table",s:"Chemistry",c:18,r:4.6,d:2024},
- {t:"Chemical Bonds",s:"Chemistry",c:22,r:4.4,d:2023},
- {t:"Atomic Structure",s:"Chemistry",c:21,r:4.5,d:2024},
- {t:"Electrostatics",s:"Physics",c:23,r:4.6,d:2024},
- {t:"Plant Biology",s:"Biology",c:17,r:4.3,d:2023},
- {t:"Probability",s:"Mathematics",c:20,r:4.5,d:2024},
-];
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  getDoc,
+  doc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
-let list=[...decks];
-let selected=new Set();
+import { onAuthStateChanged } from
+  "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-const results=document.getElementById("results");
-const startBtn=document.getElementById("startStudy");
-const selectedCount=document.getElementById("selectedCount");
+import { auth, db } from "../firebase/firebaseConfig.js";
+
+/* ELEMENTS */
+const results = document.getElementById("results");
+const startBtn = document.getElementById("startStudy");
+const selectedCount = document.getElementById("selectedCount");
+const searchInput = document.getElementById("searchInput");
+
+const openFilter = document.getElementById("openFilter");
+const closeFilter = document.getElementById("closeFilter");
+const filterDrawer = document.getElementById("filterDrawer");
+
+/* STATE */
+let decks = [];
+let list = [];
+let selected = new Set();
+let user = null;
+let savedDecks = [];
+
+/* AUTH */
+onAuthStateChanged(auth, async (u) => {
+  if (!u) return;
+  user = u;
+
+  const userSnap = await getDoc(
+    doc(db, "users", user.uid)
+  );
+
+  savedDecks = userSnap.exists()
+    ? userSnap.data().savedDecks || []
+    : [];
+
+  loadDecks();
+});
+
+/* LOAD DECKS */
+async function loadDecks() {
+  decks = [];
+
+  const q = query(
+    collection(db, "decks"),
+    where("isPublic", "==", true)
+  );
+
+  const snap = await getDocs(q);
+
+  for (const d of snap.docs) {
+    const deck = d.data();
+    // console.log(deck)
+
+    const cardsSnap = await getDocs(
+      collection(db, `decks/${d.id}/cards`)
+    );
+
+    decks.push({
+      id: d.id,
+      title: deck.title,
+      subjects: deck.subjects || [],
+      createdAt: deck.createdAt,
+      ratingAvg: deck.rating?.avg || 0,
+      ratingCount: deck.rating?.count || 0,
+      cardsCount: cardsSnap.size,
+      cover: deck.cover
+    });
+  }
+
+  list = [...decks];
+  sortRating();
+}
 
 /* RENDER */
-function render(){
-    results.innerHTML="";
-    list.forEach((d,i)=>{
-        const card=document.createElement("div");
-        card.className="deck-card";
-        card.innerHTML=`
-            <div class="deck-title">${d.t}</div>
-            <div class="deck-subject">${d.s}</div>
-            <div class="deck-meta">${d.c} cards</div>
-            <div class="rating">⭐ ${d.r}</div>
-        `;
-        card.onclick=()=>{
-            selected.has(i)?selected.delete(i):selected.add(i);
-            card.classList.toggle("selected");
-            updateSelected();
-        };
-        results.appendChild(card);
-    });
+function render() {
+  results.innerHTML = "";
+
+  list.forEach(d => {
+    console.log(d)
+    const card = document.createElement("div");
+
+    const isSaved = savedDecks.includes(d.id);
+
+    card.className = `
+      relative bg-white rounded-2xl shadow hover:shadow-lg transition
+      cursor-pointer overflow-hidden border-2
+      ${selected.has(d.id) ? "border-indigo-500" : "border-transparent"}
+    `;
+
+    card.innerHTML = `
+      <!-- SAVE ICON -->
+      <button
+        class="absolute top-3 right-3 z-10 text-xl
+        ${isSaved ? "text-yellow-400" : "text-white"}
+        drop-shadow"
+        data-save="${d.id}">
+        <i class="fas fa-bookmark"></i>
+      </button>
+
+      <div class="h-36 bg-cover bg-center"
+        style="background-image:url(${d.cover || 'https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=1200'})">
+      </div>
+
+      <div class="p-5 space-y-1">
+        <h3 class="font-bold truncate">${d.title}</h3>
+
+        <p class="text-sm text-indigo-600">
+          ${d.subjects[0] || "General"}
+        </p>
+
+        <p class="text-xs text-slate-500">
+          ${d.cardsCount} cards
+        </p>
+
+        <p class="text-sm text-amber-500 font-semibold">
+          ⭐ ${d.ratingAvg.toFixed(1)}
+          <span class="text-slate-400 text-xs">
+            (${d.ratingCount})
+          </span>
+        </p>
+      </div>
+    `;
+
+    /* SELECT FOR STUDY */
+    card.onclick = (e) => {
+      if (e.target.closest("[data-save]")) return;
+
+      selected.has(d.id)
+        ? selected.delete(d.id)
+        : selected.add(d.id);
+
+      render();
+      updateSelected();
+    };
+
+    /* SAVE / UNSAVE */
+    card.querySelector("[data-save]").onclick = async (e) => {
+      e.stopPropagation();
+
+      const ref = doc(db, "users", user.uid);
+
+      if (isSaved) {
+        await updateDoc(ref, {
+          savedDecks: arrayRemove(d.id)
+        });
+        savedDecks = savedDecks.filter(id => id !== d.id);
+      } else {
+        await updateDoc(ref, {
+          savedDecks: arrayUnion(d.id)
+        });
+        savedDecks.push(d.id);
+      }
+
+      render();
+    };
+
+    results.appendChild(card);
+  });
 }
 
 /* SEARCH */
-searchInput.oninput=()=>{
-    const q=searchInput.value.toLowerCase();
-    list=decks.filter(d=>d.t.toLowerCase().includes(q)||d.s.toLowerCase().includes(q));
-    sortRating();
+searchInput.oninput = () => {
+  const q = searchInput.value.toLowerCase();
+
+  list = decks.filter(d =>
+    d.title.toLowerCase().includes(q) ||
+    d.subjects.join(",").toLowerCase().includes(q)
+  );
+
+  sortRating();
 };
 
 /* SORT */
-function sortRating(){
-    list.sort((a,b)=>b.r-a.r);
-    render();
-}
-function sortRecent(){
-    list.sort((a,b)=>b.d-a.d);
-    render();
+function sortRating() {
+  list.sort((a, b) => b.ratingAvg - a.ratingAvg);
+  render();
 }
 
-/* FILTER DRAWER */
-openFilter.onclick=()=>filterDrawer.classList.add("open");
-closeFilter.onclick=()=>filterDrawer.classList.remove("open");
+function sortRecent() {
+  list.sort(
+    (a, b) =>
+      (b.createdAt?.seconds || 0) -
+      (a.createdAt?.seconds || 0)
+  );
+  render();
+}
 
-document.querySelectorAll("[data-sort]").forEach(b=>{
-    b.onclick=()=>{
-        b.dataset.sort==="recent"?sortRecent():sortRating();
-    };
+/* FILTER */
+openFilter.onclick = () => {
+  filterDrawer.style.right = "0";
+};
+
+closeFilter.onclick = () => {
+  filterDrawer.style.right = "-300px";
+};
+
+document.querySelectorAll("[data-sort]").forEach(btn => {
+  btn.onclick = () => {
+    btn.dataset.sort === "recent"
+      ? sortRecent()
+      : sortRating();
+  };
 });
-document.querySelectorAll("[data-subject]").forEach(b=>{
-    b.onclick=()=>{
-        list=b.dataset.subject==="All"
-            ? [...decks]
-            : decks.filter(d=>d.s===b.dataset.subject);
-        sortRating();
-    };
-});
 
-function updateSelected(){
-    selectedCount.innerText=`${selected.size} decks selected`;
-    startBtn.classList.toggle("hidden",selected.size===0);
+/* SELECT INFO */
+function updateSelected() {
+  selectedCount.innerText =
+    `${selected.size} decks selected`;
+
+  startBtn.classList.toggle(
+    "hidden",
+    selected.size === 0
+  );
 }
 
-sortRating();
+/* START STUDY */
+startBtn.onclick = () => {
+  localStorage.setItem(
+    "studyDecks",
+    JSON.stringify([...selected])
+  );
+
+  window.location.href =
+    "/pages/user/studyMode.html";
+};

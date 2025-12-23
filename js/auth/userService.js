@@ -14,7 +14,7 @@ export const createUserDoc = async (user) => {
     name: "",
     photoURL: "",
     role: "user",
-    isProfileComplete: false,
+    isProfileComplete: true,
     createdAt: serverTimestamp()
   });
 };

@@ -19,8 +19,8 @@ export const signupUser = async (email, password) => {
   localStorage.setItem("token", token);
   localStorage.setItem("role", "user");
 
-  // 🔥 only redirect here
-  window.location.href = "/pages/user/complete-profile.html";
+  //only redirect here
+  // window.location.href = "/pages/user/complete-profile.html";
 };
 
 /* LOGIN */
@@ -40,19 +40,19 @@ export const signinUser = async (email, password) => {
   }
 };
 
-/* ✅ UPDATE PROFILE (AUTH + FIRESTORE) */
+// UPDATE PROFILE 
 export const updateUserProfile = async (name, photoURL) => {
   if (!auth.currentUser) {
     throw new Error("User not authenticated");
   }
 
-  // 🔹 Update Firebase Auth
+  // Update Firebase Auth
   await updateProfile(auth.currentUser, {
     displayName: name,
     photoURL
   });
 
-  // 🔹 Update Firestore
+  // Update Firestore
   await updateUserDoc(auth.currentUser.uid, {
     name,
     photoURL

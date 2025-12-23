@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Saved Decks</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/components/userNavbar.css">
+</head>
+
+<body class="bg-slate-100">
+
+  <div id="navbar-container"></div>
+
+  <main class="max-w-6xl mx-auto p-6">
+    <h1 class="text-3xl font-black mb-6">Saved Cards</h1>
+    <div id="savedGrid" class="grid md:grid-cols-3 gap-6"></div>
+  </main>
+
+  <script type="module">
+    import { loadUserNavbar } from "/js/components/userNavbar.js";
+    loadUserNavbar();
+  </script>
+
+  <script type="module" src="/js/user/savedDecks.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Decks</title>
+  <link rel="stylesheet" href="/css/admins.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="admindashboard.html">Dashboard</a>
+    <a href="users.html">Users</a>
+    <a href="decks.html" class="active">Decks</a>
+  </div>
+
+  <div class="main">
+    <div class="header">
+      <h2>User Decks</h2>
+      <input id="deckSearch" class="search" placeholder="Search..." onkeyup="searchTable('deckSearch','deckTable')">
+    </div>
+
+    <table id="deckTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Total Decks</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <script src="/js/admins.js"></script>
+        <script>
+          users.forEach(u => {
+            document.write(`
+              <tr>
+                <td>${u.name}</td>
+                <td>${u.email}</td>
+                <td>${u.decks}</td>
+                <td>
+                  <button class="edit">Edit</button>
+                  <button class="delete">Delete</button>
+                </td>
+              </tr>
+            `);
+          });
+        </script>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

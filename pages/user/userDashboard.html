@@ -2,102 +2,91 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Flashcard Hub | Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlashExchange | Dashboard</title>
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Noto+Sans:wght@300..800&display=swap"
+        rel="stylesheet" />
+
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Navbar CSS -->
     <link rel="stylesheet" href="/css/components/userNavbar.css">
-    <link rel="stylesheet" href="/css/user/userDashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-<body>
+<body class="bg-slate-50 font-[Lexend]">
+
     <!-- NAVBAR -->
     <div id="navbar-container"></div>
 
-    <div class="container">
-        <!-- DASHBOARD -->
-        <div class="bg-container">
-            <div>
-                <h1 class="dashboard-title">Dashboard</h1>
-                <p class="dashboard-sub">Create, manage and study flashcards</p>
+    <!-- MAIN -->
+    <main class="max-w-7xl mx-auto px-6 py-10 flex flex-col gap-12">
+
+        <!-- HERO -->
+        <section class="grid lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-5 space-y-4">
+                <h1 class="text-4xl font-black">
+                    Ready to expand your
+                    <span class="text-blue-500">knowledge?</span>
+                </h1>
+                <p class="text-slate-500">
+                    Track progress, manage decks and study smarter.
+                </p>
+                <a href="/pages/user/createDeck.html"
+                    class="inline-flex items-center gap-2 bg-blue-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-600">
+                    <span class="material-symbols-outlined">add</span>
+                    Create New Deck
+                </a>
             </div>
 
-            <br>
-            <div class="main-content">
-
-                <!-- CREATE SECTION -->
-                <div class="section">
-                    <h2 class="section-title">Create New Deck</h2>
-
-                    <div class="create-row">
-                        <a href="/pages/user/createDeck.html" class="create-btn">
-                            Create Deck
-                        </a>
-
-                    </div>
-
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div id="totalDecks" class="stat-value">0</div>
-                            <div>Total Decks</div>
-                        </div>
-                        <div class="stat-card">
-                            <div id="totalCards" class="stat-value">0</div>
-                            <div>Total Cards</div>
-                        </div>
-                    </div>
+            <!-- STATS -->
+            <div class="lg:col-span-7 grid grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow">
+                    <p class="text-sm text-slate-400">Total Decks</p>
+                    <h3 id="totalDecks" class="text-4xl font-bold">0</h3>
                 </div>
-
-                <!-- MY DECKS -->
-                <div class="section">
-                    <h2 class="section-title">My Decks</h2>
-
-                    <div id="deckList" class="decks-list"></div>
-
-                    <!-- SHUFFLE AT BOTTOM -->
-                    <button id="shuffleAll" class="shuffle-btn">
-                        <i class="fas fa-random"></i> Shuffle & Study
-                    </button>
+                <div class="bg-white p-6 rounded-2xl shadow">
+                    <p class="text-sm text-slate-400">Total Cards</p>
+                    <h3 id="totalCards" class="text-4xl font-bold">0</h3>
                 </div>
-
             </div>
+        </section>
+
+        <!-- DECKS -->
+        <section class="space-y-6">
+            <div class="flex justify-between items-center">
+                <h2 class="text-2xl font-bold">My Decks</h2>
+            </div>
+
+            <div id="deckList" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+        </section>
+
+        <!-- STUDY BAR -->
+        <div id="studyBar" class="hidden mt-6 p-4 bg-indigo-50 rounded-2xl flex justify-between items-center">
+            <span id="selectedCount" class="font-semibold text-indigo-700">
+                0 cards selected
+            </span>
+            <button id="startStudy" class="px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700">
+                ▶ Start Study
+            </button>
         </div>
+    </main>
 
-        <!-- CREATE DECK POPUP -->
-        <div id="overlay" class="overlay hidden">
-            <div class="popup">
-                <div class="popup-header">
-                    <h3>Create Deck</h3>
-                    <button id="closePopup">✕</button>
-                </div>
-
-                <input id="deckTitle" class="" placeholder="Deck name" />
-                <input id="subjectInput" class="" placeholder="Subject" />
-
-                <label>
-                    <input type="checkbox" id="isPublic" />
-                    Private Deck
-                </label>
-
-                <button id="addCardBtn" class="btn small">Add Card</button>
-
-                <div id="cardInputs" class="hidden">
-                    <input id="frontText" class="form-input" placeholder="Front text" />
-                    <input id="backText" class="form-input" placeholder="Back text" />
-                    <button id="saveCardBtn" class="btn small">Save Card</button>
-                </div>
-
-                <div id="cardsPreview"></div>
-
-                <button id="saveDeckBtn" class="btn primary full">Create Deck</button>
-            </div>
-        </div>
-    </div>
+    <!-- JS -->
     <script type="module">
         import { loadUserNavbar } from "/js/components/userNavbar.js";
         loadUserNavbar();
     </script>
+
     <script type="module" src="/js/dashboard/userDashboard.js"></script>
 </body>
 

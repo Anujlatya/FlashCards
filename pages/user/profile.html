@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Update Profile | Flashcard Hub</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/css/signin_signup.css">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/components/userNavbar.css">
 </head>
 
-<body>
+<body class="bg-slate-100">
 
-<div class="auth-container">
-    <div class="auth-box">
-        <div class="auth-header">
-            <h2>Update Profile</h2>
-            <p>Manage your personal information</p>
-        </div>
+  <div id="navbar-container"></div>
 
-        <form id="profile-form" class="auth-form">
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" id="profileName" placeholder="Your name">
-            </div>
+  <main class="max-w-md mx-auto mt-20 bg-white p-8 rounded-3xl shadow">
+    <h2 class="text-2xl font-black mb-6">Your Profile</h2>
 
-            <div class="form-group">
-                <label>Photo URL</label>
-                <input type="text" id="profilePhoto" placeholder="https://image-url">
-            </div>
+    <form id="profile-form" class="space-y-4">
+      <input id="profileName"
+        class="w-full border rounded-xl p-3"
+        placeholder="Name" />
 
-            <button type="submit" class="auth-btn">
-                Update Profile
-            </button>
+      <input id="profilePhoto"
+        class="w-full border rounded-xl p-3"
+        placeholder="Photo URL" />
 
-            <div class="auth-footer">
-                <a href="/pages/user/userDashboard.html">← Back to Dashboard</a>
-            </div>
-        </form>
-    </div>
-</div>
+      <button class="w-full bg-blue-500 text-white py-3 rounded-xl font-bold">
+        Save Changes
+      </button>
+    </form>
+  </main>
 
-<script type="module" src="/js/profile/profile.js"></script>
+  <script type="module">
+    import { loadUserNavbar } from "/js/components/userNavbar.js";
+    loadUserNavbar();
+  </script>
+
+  <script type="module" src="/js/profile/profile.js"></script>
 </body>
 </html>

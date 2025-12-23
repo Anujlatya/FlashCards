@@ -7,6 +7,7 @@
     <title>Flashcard Hub</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/signin_signup.css">
+    <link rel="stylesheet" href="/css/style_2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
@@ -14,7 +15,7 @@
     <header>
         <div class="navbar">
             <div class="logo flex items-center">
-                💡 <span>Flashcard Hub</span>
+                 <span>Flashcard Hub</span>
             </div>
 
             <div class="nav-links flex gap-5">
@@ -47,142 +48,96 @@
         <div id="msg-popup" class="msg-popup"></div>
     </header>
 
-    <main>
-        <div class="hero flex flex-col items-center justify-center min-h-[75vh] text-center">
-            <div class="icon text-6xl mb-5">📋</div>
-            <h1 class="text-4xl font-bold mb-5">Enhance your learning<br>with interactive</h1>
-            <button class="bg-black text-white px-6 py-2 text-sm">Start Studying</button>
+   <main>
+
+    <!-- HERO SECTION -->
+    <div class="hero hero-new">
+        <div class="hero-left">
+            <h1>
+                Enhance your learning <br>
+                with <span>interactive flashcards</span>
+            </h1>
+
+            <p>
+                Discover, study, and share flashcards from a global
+                community of learners. Create visual decks, remix popular
+                ones, and track your progress.
+            </p>
+
+            <div class="hero-actions">
+                <button class="primary-btn">Start Studying Free</button>
+                <button class="secondary-btn">Create Your Own Deck</button>
+            </div>
         </div>
+        <div class="hero-right">
+            <img src="/Assets/heropage.png" alt="Hero Image">
+        </div>
+    </div>
 
-        <div class="public-flashcards-section max-w-6xl mx-auto px-4 text-center">
-            <div class="section-content">
-                <h2 class="text-3xl font-semibold mb-4 text-gray-800">Public Flash Cards</h2>
-                <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">No account? No problem. Public flash cards are
-                    free for everyone to use!</p>
 
-                <div class="flashcard-options flex flex-col gap-4 max-w-2xl mx-auto">
-                    <div
-                        class="flashcard-option flex justify-between items-center px-6 py-4 border-2 border-gray-300 rounded-full cursor-pointer hover:border-blue-600 hover:translate-x-2 transition-all">
-                        <span class="text-lg text-gray-800">Classical Music Composers</span>
-                        <div
-                            class="arrow-icon w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-white">
-                            <i class="fas fa-chevron-right text-sm"></i>
-                        </div>
-                    </div>
+    <!-- POPULAR FLASHCARDS -->
+    <div class="public-flashcards-section">
+        <h2>Popular Flash Card Decks</h2>
+        <p>Dive into the top community decks for free. No account required.</p>
 
-                    <div
-                        class="flashcard-option flex justify-between items-center px-6 py-4 border-2 border-gray-300 rounded-full cursor-pointer hover:border-blue-600 hover:translate-x-2 transition-all">
-                        <span class="text-lg text-gray-800">Star Trek Facts & Trivia</span>
-                        <div
-                            class="arrow-icon w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-white">
-                            <i class="fas fa-chevron-right text-sm"></i>
-                        </div>
-                    </div>
+        <div class="deck-cards">
+            <div class="deck-card beginner">
+                <span class="tag">Beginner</span>
+                <h3>Basic Spanish Vocabulary</h3>
+                <p>500 essential words for beginners starting their journey.</p>
+                <div class="meta">120 Cards ⭐ 4.8</div>
+            </div>
 
-                    <div
-                        class="flashcard-option flex justify-between items-center px-6 py-4 border-2 border-gray-300 rounded-full cursor-pointer hover:border-blue-600 hover:translate-x-2 transition-all">
-                        <span class="text-lg text-gray-800">Miscellaneous Trivia</span>
-                        <div
-                            class="arrow-icon w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-white">
-                            <i class="fas fa-chevron-right text-sm"></i>
-                        </div>
-                    </div>
-                </div>
+            <div class="deck-card popular">
+                <span class="tag">Popular</span>
+                <h3>Molecular Biology</h3>
+                <p>Detailed diagrams and definitions for cell structures.</p>
+                <div class="meta">85 Cards ⭐ 4.6</div>
+            </div>
+
+            <div class="deck-card verified">
+                <span class="tag">Verified</span>
+                <h3>World History 1900–2000</h3>
+                <p>Key events, dates, and figures of the 20th century.</p>
+                <div class="meta">200 Cards ⭐ 4.7</div>
             </div>
         </div>
 
-        <div class="gallery-section mx-auto my-12 px-4 shadow-sm rounded-lg">
-            <div class="gallery-header text-left mb-6">
-                <h2 class="text-2xl font-semibold mb-2 text-gray-800">Gallery</h2>
-                <p class="text-lg text-gray-600">Check out our blog for tips and tricks.</p>
+        <a class="browse-link">Browse all public decks →</a>
+    </div>
+
+
+    <!-- HOW IT WORKS -->
+    <div class="how-it-works">
+        <h2>How It Works</h2>
+        <p>Create custom flashcard decks or find thousands made by the community.</p>
+
+        <div class="steps">
+            <div class="step">
+                <h3>Create & Discover Decks</h3>
+                <p>Create custom flashcard decks or explore thousands.</p>
             </div>
 
-            <div class="gallery-container flex gap-6 flex-wrap justify-start items-center p-12">
-                <div class="gallery-item rounded-lg shadow-sm p-4">
-                    <img src="/Assets/create-decks.png" alt="img" class="w-60 mb-3">
-                    <div class="gallery-caption text-center text-xl font-semibold text-gray-800">Create Decks</div>
-                </div>
-
-                <div class="gallery-item rounded-lg shadow-sm p-4">
-                    <img src="/Assets/study-mode.png" alt="img" class="w-60 mb-3">
-                    <div class="gallery-caption text-center text-xl font-semibold text-gray-800">Study Mode</div>
-                </div>
+            <div class="step">
+                <h3>Study with Smart Repetition</h3>
+                <p>Quiz yourself with spaced repetition.</p>
             </div>
-        </div>
 
-        <div class="testimonial-section mx-auto px-4 text-center shadow-sm rounded-lg">
-            <h2 class="section-title text-2xl font-semibold mb-8 text-gray-800">Join a community of learners and
-                creators</h2>
-
-            <div class="testimonials-container flex justify-center gap-6 flex-wrap">
-                <div
-                    class="testimonial-card bg-white rounded-lg p-6 shadow-sm w-72 text-left hover:translate-y-[-5px] transition-transform">
-                    <div class="quote-icon text-2xl text-gray-800 mb-4">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <p class="testimonial-text text-lg text-gray-600 mb-6">Feedback helps us grow.</p>
-                    <div class="testimonial-author flex items-center">
-                        <img src="https://z-cdn-media.chatglm.cn/files/45897884-2eec-4b37-92ab-091106d01050.png?auth_key=1865778668-6c43439d2f56447cbb9646a4f1bb6138-0-57b42dd12c1b3c1fb97aef3ac6e1f5a4"
-                            alt="Jordan T." class="author-avatar w-10 h-10 rounded-full mr-3">
-                        <div class="author-info">
-                            <h4 class="text-base font-semibold text-gray-800">Jordan T.</h4>
-                            <p class="text-sm text-gray-600">Educator</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    class="testimonial-card bg-white rounded-lg p-6 shadow-sm w-72 text-left hover:translate-y-[-5px] transition-transform">
-                    <div class="quote-icon text-2xl text-gray-800 mb-4">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p class="testimonial-text text-lg text-gray-600 mb-6">This platform transformed my teaching
-                        methods!</p>
-                    <div class="testimonial-author flex items-center">
-                        <img src="https://z-cdn-media.chatglm.cn/files/45897884-2eec-4b37-92ab-091106d01050.png?auth_key=1865778668-6c43439d2f56447cbb9646a4f1bb6138-0-57b42dd12c1b3c1fb97aef3ac6e1f5a4"
-                            alt="Emma R." class="author-avatar w-10 h-10 rounded-full mr-3">
-                        <div class="author-info">
-                            <h4 class="text-base font-semibold text-gray-800">Emma R.</h4>
-                            <p class="text-sm text-gray-600">Student</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    class="testimonial-card bg-white rounded-lg p-6 shadow-sm w-72 text-left hover:translate-y-[-5px] transition-transform">
-                    <div class="quote-icon text-2xl text-gray-800 mb-4">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p class="testimonial-text text-lg text-gray-600 mb-6">Flashcards made studying fun and effective.
-                    </p>
-                    <div class="testimonial-author flex items-center">
-                        <img src="https://z-cdn-media.chatglm.cn/files/45897884-2eec-4b37-92ab-091106d01050.png?auth_key=1865778668-6c43439d2f56447cbb9646a4f1bb6138-0-57b42dd12c1b3c1fb97aef3ac6e1f5a4"
-                            alt="Liam S." class="author-avatar w-10 h-10 rounded-full mr-3">
-                        <div class="author-info">
-                            <h4 class="text-base font-semibold text-gray-800">Liam S.</h4>
-                            <p class="text-sm text-gray-600">Content Creator</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    class="testimonial-card bg-white rounded-lg p-6 shadow-sm w-72 text-left hover:translate-y-[-5px] transition-transform">
-                    <div class="quote-icon text-2xl text-gray-800 mb-4">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p class="testimonial-text text-lg text-gray-600 mb-6">I love sharing my decks with others!</p>
-                    <div class="testimonial-author flex items-center">
-                        <img src="https://z-cdn-media.chatglm.cn/files/45897884-2eec-4b37-92ab-091106d01050.png?auth_key=1865778668-6c43439d2f56447cbb9646a4f1bb6138-0-57b42dd12c1b3c1fb97aef3ac6e1f5a4"
-                            alt="Olivia P." class="author-avatar w-10 h-10 rounded-full mr-3">
-                        <div class="author-info">
-                            <h4 class="text-base font-semibold text-gray-800">Olivia P.</h4>
-                            <p class="text-sm text-gray-600">Developer</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="step">
+                <h3>Share & Learn Together</h3>
+                <p>Collaborate with friends and track progress.</p>
             </div>
         </div>
-    </main>
+
+        <div class="features">
+            <div>Spaced Repetition</div>
+            <div>Sync Across Devices</div>
+            <div>Collaborative Learning</div>
+        </div>
+    </div>
+
+</main>
+
 
     <footer class="footer bg-white py-12 mt-8">
         <div class="footer-container max-w-6xl mx-auto px-4 flex justify-between">

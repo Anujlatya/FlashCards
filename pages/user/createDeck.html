@@ -2,67 +2,119 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Create Deck | Flashcard Hub</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="/css/components/userNavbar.css">
-    <link rel="stylesheet" href="/css/user/createDeck.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <title>Create Deck | FlashExchange</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Navbar CSS -->
+  <link rel="stylesheet" href="/css/components/userNavbar.css">
 </head>
 
-<body>
-    <!-- 🔥 NAVBAR COMPONENT -->
-    <div id="navbar-container"></div>
+<body class="bg-slate-50 font-[Lexend]">
 
-    <div class="deck-container">
-        <h1>Create New Deck</h1>
-        <p class="subtitle">Build your flashcard deck and study smarter.</p>
+  <!-- NAVBAR -->
+  <div id="navbar-container"></div>
 
-        <!-- COVER -->
-        <label class="label">Deck Cover</label>
-        <div class="cover-upload">
-            <input type="file" id="coverInput" accept="image/*" hidden>
-            <div id="coverPreview" class="cover-preview">
-                <i class="fas fa-image"></i>
-                <span>Upload Cover</span>
-            </div>
-        </div>
+  <!-- MAIN -->
+  <main class="max-w-4xl mx-auto px-6 py-10">
 
-        <!-- TITLE -->
-        <label class="label">Deck Title</label>
-        <input id="deckTitle" class="input" placeholder="e.g. Human Anatomy">
-
-        <!-- SUBJECT -->
-        <label class="label">Deck Subject</label>
-        <select id="subjectSelect" class="input"></select>
-
-        <div id="private-div">
-            <input type="checkbox" name="private" id="private">
-            <label for="">Make it Private</label>
-        </div>
-        <!-- CARDS -->
-        <div class="cards-section">
-            <h2>Add Cards</h2>
-
-            <div class="card-inputs">
-                <input id="frontText" class="input" placeholder="Front text">
-                <input id="backText" class="input" placeholder="Back text">
-            </div>
-
-            <button id="addCard" class="add-card-btn">+ Add Card</button>
-            <div id="liveCards" class="live-cards"></div>
-        </div>
-
-        <button id="createDeckBtn" class="create-btn">Save Deck</button>
+    <!-- HEADER -->
+    <div class="mb-10">
+      <h1 class="text-4xl font-black text-slate-800">Create New Deck</h1>
+      <p class="text-slate-500 mt-2">
+        Build your flashcard deck and start learning smarter.
+      </p>
     </div>
 
-    <script type="module">
-        import { loadUserNavbar } from "/js/components/userNavbar.js";
-        loadUserNavbar();
-    </script>
+    <!-- FORM -->
+    <div class="bg-white rounded-3xl shadow p-8 space-y-8">
 
-    <script type="module" src="/js/user/createDeck.js"></script>
+      <!-- COVER -->
+      <div>
+        <label class="font-semibold text-sm">Deck Cover</label>
+        <input type="file" id="coverInput" accept="image/*" hidden />
+        <div
+          id="coverPreview"
+          class="mt-2 h-44 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 flex flex-col items-center justify-center cursor-pointer hover:border-blue-400 transition">
+          <span class="material-symbols-outlined text-4xl text-slate-400">image</span>
+          <span class="text-sm text-slate-500">Upload cover image</span>
+        </div>
+      </div>
+
+      <!-- TITLE -->
+      <div>
+        <label class="font-semibold text-sm">Deck Title</label>
+        <input id="deckTitle"
+          class="mt-2 w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-400 outline-none"
+          placeholder="e.g. Human Anatomy" />
+      </div>
+
+      <!-- SUBJECT -->
+      <div>
+        <label class="font-semibold text-sm">Subject</label>
+        <select id="subjectSelect"
+          class="mt-2 w-full px-4 py-3 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-blue-400 outline-none">
+        </select>
+      </div>
+
+      <!-- PRIVATE -->
+      <label class="flex items-center gap-3 cursor-pointer">
+        <input id="private" type="checkbox" class="h-5 w-5 text-blue-500 rounded">
+        <span class="text-sm text-slate-600 font-medium">Make this deck private</span>
+      </label>
+
+      <!-- CARDS -->
+      <div class="border-t pt-8 space-y-4">
+        <h2 class="text-xl font-bold">Add Cards</h2>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <input id="frontText"
+            class="px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-400 outline-none"
+            placeholder="Front text" />
+          <input id="backText"
+            class="px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-400 outline-none"
+            placeholder="Back text" />
+        </div>
+
+        <button id="addCard"
+          class="mt-2 inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-5 py-2.5 rounded-xl font-semibold">
+          <span class="material-symbols-outlined">add</span>
+          Add Card
+        </button>
+
+        <!-- LIVE CARDS -->
+        <div id="liveCards" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6"></div>
+      </div>
+
+      <!-- SUBMIT -->
+      <button id="createDeckBtn"
+        class="w-full py-4 rounded-full bg-gradient-to-r from-emerald-500 to-green-600 text-white text-lg font-black hover:opacity-90">
+        Save Deck
+      </button>
+
+    </div>
+  </main>
+
+  <!-- JS -->
+  <script type="module">
+    import { loadUserNavbar } from "/js/components/userNavbar.js";
+    loadUserNavbar();
+  </script>
+
+  <script type="module" src="/js/user/createDeck.js"></script>
 </body>
 
 </html>

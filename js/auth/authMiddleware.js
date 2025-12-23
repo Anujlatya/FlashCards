@@ -13,7 +13,7 @@ export function requireAuth(allowedRoles = []) {
 
     const userDoc = await getUserDoc(user.uid);
 
-    // 🔥 Force profile completion
+    // Force profile completion
     // if (!userDoc?.isProfileComplete) {
     //   window.location.href = "/pages/user/complete-profile.html";
     //   return;
